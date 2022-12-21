@@ -21,7 +21,7 @@ cc_binary(
     linkshared = 1,
     linkstatic = 1,
     deps = [
-        "//mediapipe/graphs/pose_tracking:pose_tracking_gpu_deps",
+        "//mediapipe/graphs/pose_tracking:pose_tracking_cpu_deps",
         "//mediapipe/java/com/google/mediapipe/framework/jni:mediapipe_framework_jni",
     ],
 )
@@ -36,7 +36,7 @@ android_binary(
     name = "posetrackinggpu",
     srcs = glob(["*.java"]),
     assets = [
-        "//mediapipe/graphs/pose_tracking:pose_tracking_gpu.binarypb",
+        "//mediapipe/graphs/pose_tracking:pose_tracking_cpu.binarypb",
         "//mediapipe/modules/pose_landmark:pose_landmark_full.tflite",
         "//mediapipe/modules/pose_detection:pose_detection.tflite",
     ],
@@ -47,7 +47,7 @@ android_binary(
         "appName": "Pose Tracking",
         "mainActivity": ".MainActivity",
         "cameraFacingFront": "False",
-        "binaryGraphName": "pose_tracking_gpu.binarypb",
+        "binaryGraphName": "pose_tracking_cpu.binarypb",
         "inputVideoStreamName": "input_video",
         "outputVideoStreamName": "output_video",
         "flipFramesVertically": "True",
