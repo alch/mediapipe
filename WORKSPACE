@@ -548,10 +548,11 @@ wasm_files()
 # You may run setup_android.sh to install Android SDK and NDK.
 android_sdk_repository(
     name = "androidsdk",
-    path = "/home/zim/Dev/SDK/android"
+    path = "/Users/zim/Library/Android/sdk"
 )
 
 android_ndk_repository(
     name = "androidndk",
-    path = "/home/zim/Dev/SDK/android/ndk/21.4.7075529"
+    api_level = 21,
+    path = "/Users/zim/Library/Android/sdk/ndk/21.4.7075529"
 )
