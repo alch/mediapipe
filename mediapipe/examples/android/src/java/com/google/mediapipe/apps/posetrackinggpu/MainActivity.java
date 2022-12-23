@@ -18,18 +18,32 @@ import android.os.Bundle;
 import android.util.Log;
 import com.google.mediapipe.formats.proto.LandmarkProto.NormalizedLandmark;
 import com.google.mediapipe.formats.proto.LandmarkProto.NormalizedLandmarkList;
+import com.google.mediapipe.framework.AndroidPacketCreator;
+import com.google.mediapipe.framework.Packet;
 import com.google.mediapipe.framework.PacketGetter;
 import com.google.protobuf.InvalidProtocolBufferException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /** Main activity of MediaPipe pose tracking app. */
 public class MainActivity extends com.google.mediapipe.apps.basic.MainActivity {
   private static final String TAG = "MainActivity";
 
+  private static final String INPUT_MODEL_COMPLEXITY_SIDE_PACKET_NAME = "model_complexity";
   private static final String OUTPUT_LANDMARKS_STREAM_NAME = "pose_landmarks";
+
+  // Pose landmark model complexity, see
+  private static final int MODEL_COMPLEXITY = 0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    AndroidPacketCreator packetCreator = processor.getPacketCreator();
+    Map<String, Packet> inputSidePackets = new HashMap<>();
+    inputSidePackets.put(INPUT_MODEL_COMPLEXITY_SIDE_PACKET_NAME, packetCreator.createInt32(MODEL_COMPLEXITY));
+    processor.setInputSidePackets(inputSidePackets);
 
     // To show verbose logging, run:
     // adb shell setprop log.tag.MainActivity VERBOSE
