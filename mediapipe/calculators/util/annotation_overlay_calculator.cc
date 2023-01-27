@@ -618,7 +618,7 @@ absl::Status AnnotationOverlayCalculator::GlSetup(CalculatorContext* cc) {
   std::string defines;
   if (options_.gpu_uses_top_left_origin()) {
     defines = R"(
-      #define INPUT_FRAME_HAS_TOP_LEFT_ORIGIN;
+      #define INPUT_FRAME_HAS_TOP_LEFT_ORIGIN ;
     )";
   }
 
